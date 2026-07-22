@@ -10,6 +10,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-ins
       ca-certificates curl yad winbind mokutil policykit-1 samba spacenavd gawk \
       lsb-release wget xdg-utils x11-xserver-utils desktop-file-utils fonts-liberation locales \
     && locale-gen de_DE.UTF-8 \
+    && chown -R 1000:1000 /var/lib/swcatalog /var/cache/swcatalog \
     && rm -rf /var/lib/apt/lists/*
 
 COPY scripts/patch-selkies.py /tmp/patch-selkies.py
