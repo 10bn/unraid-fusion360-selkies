@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Install Autodesk Fusion 360
+Comment=Download and run the pinned community installer
+Exec=/opt/fusion360/install-fusion360.sh
+Icon=applications-engineering
+Terminal=true
+Categories=Development;Engineering;

@@ -1,0 +1,9 @@
+*.log
+*.tmp
+.env
+container.env
+initial-password.txt
+appdata/
+installer/
+*.sh.download
+.DS_Store

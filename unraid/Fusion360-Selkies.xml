@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Fusion360-Selkies</Name>
+  <Repository>ghcr.io/10bn/unraid-fusion360-selkies:latest</Repository>
+  <Registry>https://github.com/10bn/unraid-fusion360-selkies/pkgs/container/unraid-fusion360-selkies</Registry>
+  <Network>host</Network>
+  <MyIP/>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/10bn/unraid-fusion360-selkies/issues</Support>
+  <Project>https://github.com/10bn/unraid-fusion360-selkies</Project>
+  <ReadMe>https://github.com/10bn/unraid-fusion360-selkies#readme</ReadMe>
+  <Overview>Unofficial Fusion 360 setup using the community Wine installer inside a GPU-accelerated Selkies desktop. Includes iPad touch and Magic Keyboard support.</Overview>
+  <Category>Productivity:Tools:Utilities</Category>
+  <WebUI>http://[IP]:18080/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/10bn/unraid-fusion360-selkies/main/unraid/Fusion360-Selkies.xml</TemplateURL>
+  <Icon/>
+  <ExtraParams>--runtime=nvidia --gpus=all --shm-size=2g</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DonateText/>
+  <DonateLink/>
+  <Requires>Compatible NVIDIA GPU and Unraid NVIDIA Driver plugin required. Uses host ports 18080/tcp, 18081/tcp, 19081/tcp, 3478/tcp+udp and 61000-61100/udp.</Requires>
+  <Config Name="Persistent Home" Target="/home/ubuntu" Default="/mnt/user/appdata/fusion360/home" Mode="rw" Description="Wine prefix, Fusion installation and desktop settings" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/fusion360/home</Config>
+  <Config Name="CAD Data" Target="/data" Default="/mnt/user/appdata/fusion360/data" Mode="rw" Description="Exchange directory for CAD files" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/fusion360/data</Config>
+  <Config Name="WebUI Port" Target="NGINX_PORT" Default="18080" Mode="{3}" Description="Host-network web port" Type="Variable" Display="always" Required="true" Mask="false">18080</Config>
+  <Config Name="NVIDIA GPUs" Target="NVIDIA_VISIBLE_DEVICES" Default="all" Mode="{3}" Description="Use all GPUs, or specify one GPU UUID" Type="Variable" Display="always" Required="true" Mask="false">all</Config>
+  <Config Name="Resolution Width" Target="DISPLAY_SIZEW" Default="1280" Mode="{3}" Description="iPad-optimized width" Type="Variable" Display="always" Required="true" Mask="false">1280</Config>
+  <Config Name="Resolution Height" Target="DISPLAY_SIZEH" Default="854" Mode="{3}" Description="iPad-optimized height" Type="Variable" Display="always" Required="true" Mask="false">854</Config>
+  <Config Name="Video Encoder" Target="SELKIES_ENCODER" Default="nvh264enc" Mode="{3}" Description="NVIDIA NVENC H.264 encoder" Type="Variable" Display="always" Required="true" Mask="false">nvh264enc</Config>
+  <Config Name="TURN Host" Target="SELKIES_TURN_HOST" Default="auto" Mode="{3}" Description="auto selects the host LAN address; use a reachable VPN address for remote access" Type="Variable" Display="always" Required="true" Mask="false">auto</Config>
+  <Config Name="TURN External IP" Target="TURN_EXTERNAL_IP" Default="auto" Mode="{3}" Description="Must be reachable by the client; auto selects the primary host IPv4 address" Type="Variable" Display="always" Required="true" Mask="false">auto</Config>
+  <Config Name="Desktop Password" Target="PASSWD" Default="changeme" Mode="{3}" Description="Password for sudo inside the desktop; change before use" Type="Variable" Display="advanced" Required="true" Mask="true">changeme</Config>
+  <Config Name="Basic Auth" Target="SELKIES_ENABLE_BASIC_AUTH" Default="false" Mode="{3}" Description="Disabled for Safari WebSocket compatibility; use only in LAN or over VPN" Type="Variable" Display="advanced" Required="true" Mask="false">false</Config>
+  <Config Name="Timezone" Target="TZ" Default="Europe/Berlin" Mode="{3}" Description="Container timezone" Type="Variable" Display="advanced" Required="true" Mask="false">Europe/Berlin</Config>
+  <Config Name="NVIDIA Capabilities" Target="NVIDIA_DRIVER_CAPABILITIES" Default="all" Mode="{3}" Description="Graphics, Vulkan and NVENC" Type="Variable" Display="advanced" Required="true" Mask="false">all</Config>
+  <Config Name="Refresh Rate" Target="DISPLAY_REFRESH" Default="30" Mode="{3}" Description="Desktop refresh rate" Type="Variable" Display="advanced" Required="true" Mask="false">30</Config>
+  <Config Name="Display DPI" Target="DISPLAY_DPI" Default="120" Mode="{3}" Description="Readable UI scaling on iPad" Type="Variable" Display="advanced" Required="true" Mask="false">120</Config>
+  <Config Name="Dynamic Resize" Target="SELKIES_ENABLE_RESIZE" Default="false" Mode="{3}" Description="Resize desktop to browser viewport" Type="Variable" Display="advanced" Required="true" Mask="false">false</Config>
+  <Config Name="Frame Rate" Target="SELKIES_FRAMERATE" Default="30" Mode="{3}" Description="Remote desktop frame rate" Type="Variable" Display="advanced" Required="true" Mask="false">30</Config>
+  <Config Name="Video Bitrate" Target="SELKIES_VIDEO_BITRATE" Default="6000" Mode="{3}" Description="WebRTC video bitrate in kbit/s" Type="Variable" Display="advanced" Required="false" Mask="false">6000</Config>
+  <Config Name="KasmVNC Fallback" Target="KASMVNC_ENABLE" Default="false" Mode="{3}" Description="Set true only as TCP fallback; disables Selkies WebRTC" Type="Variable" Display="advanced" Required="true" Mask="false">false</Config>
+  <Config Name="TURN Port" Target="SELKIES_TURN_PORT" Default="3478" Mode="{3}" Description="TURN listener port" Type="Variable" Display="advanced" Required="true" Mask="false">3478</Config>
+  <Config Name="TURN Protocol" Target="SELKIES_TURN_PROTOCOL" Default="udp" Mode="{3}" Description="Low-latency transport" Type="Variable" Display="advanced" Required="true" Mask="false">udp</Config>
+  <Config Name="TURN Relay Start" Target="TURN_MIN_PORT" Default="61000" Mode="{3}" Description="Start of relay UDP range" Type="Variable" Display="advanced" Required="true" Mask="false">61000</Config>
+  <Config Name="TURN Relay End" Target="TURN_MAX_PORT" Default="61100" Mode="{3}" Description="End of relay UDP range" Type="Variable" Display="advanced" Required="true" Mask="false">61100</Config>
+  <Config Name="Language" Target="LANG" Default="de_DE.UTF-8" Mode="{3}" Description="German locale" Type="Variable" Display="advanced" Required="true" Mask="false">de_DE.UTF-8</Config>
+  <Config Name="Locale" Target="LC_ALL" Default="de_DE.UTF-8" Mode="{3}" Description="German locale" Type="Variable" Display="advanced" Required="true" Mask="false">de_DE.UTF-8</Config>
+  <Config Name="Selkies Signalling Port" Target="SELKIES_PORT" Default="18081" Mode="{3}" Description="Internal host-network signalling port" Type="Variable" Display="advanced" Required="true" Mask="false">18081</Config>
+  <Config Name="Selkies Metrics Port" Target="SELKIES_METRICS_HTTP_PORT" Default="19081" Mode="{3}" Description="Internal host-network metrics port" Type="Variable" Display="advanced" Required="true" Mask="false">19081</Config>
+  <TailscaleStateDir/>
+</Container>
